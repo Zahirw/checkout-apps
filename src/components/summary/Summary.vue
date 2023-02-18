@@ -33,7 +33,7 @@ import Button from "../ui/Button.vue";
       </div>
     </div>
     <div class="btn">
-      <Button>Pay With e-wallet</Button>
+      <Button @onClick="$router.push('shipment')">Pay With e-wallet</Button>
     </div>
   </div>
 </template>

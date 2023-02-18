@@ -1,6 +1,6 @@
 <script setup>
 import BackNav from "../components/navigation/BackNav.vue";
-import DeliveryDetails from "../components/delivery/DeliveryDetails.vue";
+import Shipment from "../components/shipment/shipment.vue";
 import Summary from "../components/summary/Summary.vue";
 </script>
 
@@ -8,7 +8,7 @@ import Summary from "../components/summary/Summary.vue";
   <div class="container">
     <BackNav />
     <div class="content">
-      <DeliveryDetails />
+      <Shipment />
       <Summary />
     </div>
   </div>

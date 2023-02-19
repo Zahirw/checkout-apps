@@ -1,6 +1,14 @@
 <script setup>
+import { useCartStore } from "@/stores/cart";
+
+// components
 import Input from "../ui/Input.vue";
 import Textarea from "../ui/Textarea.vue";
+
+const store = useCartStore();
+
+const { cart } = store;
+console.log(cart);
 </script>
 
 <template>

@@ -1,5 +1,20 @@
 <script setup>
+import { useRoute, useRouter } from "vue-router";
+
+// component
 import Button from "../ui/Button.vue";
+
+const route = useRoute();
+const router = useRouter();
+
+const handleNextPage = () => {
+  if (route.name == "home") {
+    router.push("shipment");
+  }
+  if (route.name == "shipment") {
+    router.push("finish");
+  }
+};
 </script>
 
 <template>
@@ -33,7 +48,7 @@ import Button from "../ui/Button.vue";
       </div>
     </div>
     <div class="btn">
-      <Button @onClick="$router.push('shipment')">Pay With e-wallet</Button>
+      <Button @onClick="handleNextPage">Pay With e-wallet</Button>
     </div>
   </div>
 </template>

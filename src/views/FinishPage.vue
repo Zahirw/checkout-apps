@@ -1,14 +1,12 @@
 <script setup>
-import BackNav from "../components/navigation/BackNav.vue";
-import Shipment from "../components/shipment/Shipment.vue";
+import Finish from "../components/finish/Finish.vue";
 import Summary from "../components/summary/Summary.vue";
 </script>
 
 <template>
   <div class="container">
-    <BackNav />
     <div class="content">
-      <Shipment />
+      <Finish />
       <Summary />
     </div>
   </div>
@@ -27,4 +25,5 @@ import Summary from "../components/summary/Summary.vue";
     width: 100%
     height: 100%
     display: flex
+    align-items: center
 </style>

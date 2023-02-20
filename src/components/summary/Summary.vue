@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart";
 
@@ -41,23 +42,31 @@ const handleNextPage = () => {
         );
       }
       break;
+    case "shipment":
+      router.push("finish");
+      break;
 
     default:
       break;
   }
-  // if (route.name == "home") {
-  //   if (
-  //     cart.status.isEmailValid &&
-  //     cart.status.isPhoneValid &&
-  //     cart.status.isAddressValid
-  //   ) {
-  //     router.push("shipment");
-  //   }
-  // }
-  // if (route.name == "shipment") {
-  //   router.push("finish");
-  // }
 };
+const currency = (param) => {
+  return Number(param).toLocaleString("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
+};
+const total = computed(() => {
+  let sum = 0;
+  sum += 500000;
+  if (cart.shipment) {
+    sum += cart.shipment.price;
+  }
+  if (cart.isDropship) {
+    sum += 5900;
+  }
+  return currency(sum);
+});
 </script>
 
 <template>
@@ -67,27 +76,43 @@ const handleNextPage = () => {
       <p>10 items purchased</p>
       <div class="separator"></div>
     </div>
-    <div class="delivery">
-      <p>delivery Estimation</p>
-      <h3>Today by GO-SEND</h3>
+    <div v-if="cart.shipment?.value" class="delivery">
+      <p>Delivery Estimation</p>
+      <h3>Today by {{ cart.shipment.name }}</h3>
       <div class="separator"></div>
     </div>
-    <div class="payment">
+    <div v-if="cart.payment?.value" class="payment">
       <p>Payment Method</p>
-      <h3>Bank Transfer</h3>
+      <h3>{{ cart.payment.name }}</h3>
     </div>
     <div class="total">
       <div class="total_group1">
         <p>Cost Of goods</p>
         <p v-if="cart.isDropship">Dropshipping Fee</p>
-        <p>GO-SEND shipment</p>
+        <p v-if="cart.shipment?.value">{{ cart.shipment?.name }} shipment</p>
         <h2 class="total_amount">Total</h2>
       </div>
       <div class="total_group2">
-        <h4>500.000</h4>
-        <h4 v-if="cart.isDropship">5.900</h4>
-        <h4>15.000</h4>
-        <h2 class="total_amount">505.900</h2>
+        <h4>
+          {{ currency("500000") }}
+        </h4>
+        <h4 v-if="cart.isDropship">
+          {{
+            Number("5900").toLocaleString("id-ID", {
+              style: "currency",
+              currency: "IDR",
+            })
+          }}
+        </h4>
+        <h4 v-if="cart.shipment?.value">
+          {{
+            Number(cart.shipment?.price).toLocaleString("id-ID", {
+              style: "currency",
+              currency: "IDR",
+            })
+          }}
+        </h4>
+        <h2 class="total_amount">{{ total }}</h2>
       </div>
     </div>
     <div class="btn">

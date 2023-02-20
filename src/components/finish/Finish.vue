@@ -1,12 +1,27 @@
 <script setup>
+import { computed } from "vue";
+import { useCartStore } from "@/stores/cart";
 import BackNav from "../navigation/BackNav.vue";
+
+const store = useCartStore();
+const { cart } = store;
+
+const generateOrderId = computed(() => {
+  const allowedChars = "23456789abcdefghjkmnpqrstuvwxyz";
+  let result = "";
+  for (let i = 0; i < 5; i++) {
+    const randomIndex = Math.floor(Math.random() * allowedChars.length);
+    result += allowedChars.charAt(randomIndex);
+  }
+  return result.toUpperCase();
+});
 </script>
 
 <template>
   <div class="finish">
     <h1 class="title">Thank you</h1>
-    <h4>Order ID: 12ASD</h4>
-    <p>Your order will be delivered today with GO-SEND</p>
+    <h4>Order ID: {{ generateOrderId }}</h4>
+    <p>Your order will be delivered today with {{ cart.shipment?.name }}</p>
     <BackNav />
   </div>
 </template>

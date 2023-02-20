@@ -19,7 +19,7 @@ const handleEmail = (e) => {
   cart.email = e.target.value;
   if (cart.email.includes("@")) {
     cart.status.isEmailValid = true;
-    cart.error.splice(index, 1);
+    cart.error?.splice(index, 1);
   } else {
     cart.status.isEmailValid = false;
   }
@@ -31,7 +31,7 @@ const handlePhone = (e) => {
   cart.phone = e.target.value;
   if (cart.phone[0] == "0" && cart.phone.length > 6 && cart.phone.length < 20) {
     cart.status.isPhoneValid = true;
-    cart.error.splice(index, 1);
+    cart.error?.splice(index, 1);
   } else {
     cart.status.isPhoneValid = false;
   }
@@ -42,7 +42,7 @@ const handleAddress = (e) => {
   cart.address = e.target.value;
   if (cart.address.length > 6) {
     cart.status.isAddressValid = true;
-    cart.error.splice(index, 1);
+    cart.error?.splice(index, 1);
   } else {
     cart.status.isAddressValid = false;
   }
@@ -53,7 +53,7 @@ const handleDropshipName = (e) => {
   cart.dropshipper.name = e.target.value;
   if (cart.dropshipper.name.length > 6) {
     cart.status.isDropshipNameValid = true;
-    cart.error.splice(index, 1);
+    cart.error?.splice(index, 1);
   } else {
     cart.status.isDropshipNameValid = false;
   }
@@ -69,7 +69,7 @@ const handleDropshipPhone = (e) => {
     cart.dropshipper.phone.length < 20
   ) {
     cart.status.isDropshipPhoneValid = true;
-    cart.error.splice(index, 1);
+    cart.error?.splice(index, 1);
   } else {
     cart.status.isDropshipPhoneValid = false;
   }

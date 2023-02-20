@@ -17,7 +17,7 @@ export const useCartStore = defineStore("cart", () => {
       isAddressValid: false,
       isDropshipNameValid: false,
       isDropshipPhoneValid: false,
-    }
+    },
 
   });
   // const doubleCount = computed(() => count.value * 2);

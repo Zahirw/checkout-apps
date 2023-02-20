@@ -2,9 +2,11 @@
 
 <template>
   <input
+    :class="$props.class"
     :type="$props.type"
     :placeholder="$props.placeholder"
-    @change="$emit('onChange')"
+    :value="$props.value"
+    @input="$emit('onInput', $event)"
   />
 </template>
 
@@ -16,4 +18,13 @@ input
   padding: 1rem
   font-size: 1rem
   margin-top: 1rem
+
+input:focus
+  outline: 1px solid #FF8A00
+.invalid
+  border: 1px solid #FF8A00
+.valid
+  outline: 1px solid #1fd97d
+.valid:focus
+  outline: 1px solid #1fd97d
 </style>

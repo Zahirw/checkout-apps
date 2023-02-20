@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <button class="btn" @click="$emit('onClick')">
+  <button type="submit" class="btn" @click="$emit('onClick')">
     <slot></slot>
   </button>
 </template>

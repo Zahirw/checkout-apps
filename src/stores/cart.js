@@ -6,10 +6,19 @@ export const useCartStore = defineStore("cart", () => {
     name: '',
     phone: '',
     address: '',
+    isDropship: false,
     dropshipper: {
       name: '',
       phone: '',
+    },
+    status: {
+      isEmailValid: false,
+      isPhoneValid: false,
+      isAddressValid: false,
+      isDropshipNameValid: false,
+      isDropshipPhoneValid: false,
     }
+
   });
   // const doubleCount = computed(() => count.value * 2);
   // function increment() {

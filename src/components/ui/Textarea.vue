@@ -2,9 +2,11 @@
 
 <template>
   <textarea
+    :class="$props.class"
     :type="$props.type"
     :placeholder="$props.placeholder"
-    @change="$emit('onChange')"
+    maxlength="120"
+    @input="$emit('onInput', $event)"
   />
 </template>
 
@@ -16,4 +18,13 @@ textarea
   padding: 1rem
   font-size: 1rem
   margin-top: 1rem
+
+textarea:focus
+  outline: 1px solid #FF8A00
+.invalid
+  border: 1px solid #FF8A00
+.valid
+  outline: 1px solid #1fd97d
+.valid:focus
+  outline: 1px solid #1fd97d
 </style>

@@ -1,19 +1,62 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
+import { useCartStore } from "@/stores/cart";
 
 // component
 import Button from "../ui/Button.vue";
 
 const route = useRoute();
 const router = useRouter();
+const store = useCartStore();
+const { cart } = store;
 
 const handleNextPage = () => {
-  if (route.name == "home") {
-    router.push("shipment");
+  switch (route.name) {
+    case "home":
+      if (cart.isDropship) {
+        if (
+          cart.status.isEmailValid &&
+          cart.status.isPhoneValid &&
+          cart.status.isAddressValid &&
+          cart.status.isDropshipNameValid &&
+          cart.status.isDropshipPhoneValid
+        ) {
+          router.push("shipment");
+        } else {
+          cart.error = Object.keys(cart.status).filter(
+            (key) => cart.status[key] === false
+          );
+        }
+      } else if (
+        cart.status.isEmailValid &&
+        cart.status.isPhoneValid &&
+        cart.status.isAddressValid
+      ) {
+        router.push("shipment");
+      } else {
+        cart.error = Object.keys(cart.status).filter(
+          (key) =>
+            cart.status[key] === false &&
+            !["isDropshipNameValid", "isDropshipPhoneValid"].includes(key)
+        );
+      }
+      break;
+
+    default:
+      break;
   }
-  if (route.name == "shipment") {
-    router.push("finish");
-  }
+  // if (route.name == "home") {
+  //   if (
+  //     cart.status.isEmailValid &&
+  //     cart.status.isPhoneValid &&
+  //     cart.status.isAddressValid
+  //   ) {
+  //     router.push("shipment");
+  //   }
+  // }
+  // if (route.name == "shipment") {
+  //   router.push("finish");
+  // }
 };
 </script>
 
@@ -36,13 +79,13 @@ const handleNextPage = () => {
     <div class="total">
       <div class="total_group1">
         <p>Cost Of goods</p>
-        <p>Dropshipping Fee</p>
+        <p v-if="cart.isDropship">Dropshipping Fee</p>
         <p>GO-SEND shipment</p>
         <h2 class="total_amount">Total</h2>
       </div>
       <div class="total_group2">
         <h4>500.000</h4>
-        <h4>5.900</h4>
+        <h4 v-if="cart.isDropship">5.900</h4>
         <h4>15.000</h4>
         <h2 class="total_amount">505.900</h2>
       </div>

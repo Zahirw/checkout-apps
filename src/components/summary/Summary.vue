@@ -54,6 +54,7 @@ const currency = (param) => {
   return Number(param).toLocaleString("id-ID", {
     style: "currency",
     currency: "IDR",
+    maximumFractionDigits: 0,
   });
 };
 const total = computed(() => {
@@ -90,30 +91,22 @@ const total = computed(() => {
         <p>Cost Of goods</p>
         <p v-if="cart.isDropship">Dropshipping Fee</p>
         <p v-if="cart.shipment?.value">{{ cart.shipment?.name }} shipment</p>
-        <h2 class="total_amount">Total</h2>
       </div>
       <div class="total_group2">
         <h4>
           {{ currency("500000") }}
         </h4>
         <h4 v-if="cart.isDropship">
-          {{
-            Number("5900").toLocaleString("id-ID", {
-              style: "currency",
-              currency: "IDR",
-            })
-          }}
+          {{ currency(5900) }}
         </h4>
         <h4 v-if="cart.shipment?.value">
-          {{
-            Number(cart.shipment?.price).toLocaleString("id-ID", {
-              style: "currency",
-              currency: "IDR",
-            })
-          }}
+          {{ currency(cart.shipment?.price) }}
         </h4>
-        <h2 class="total_amount">{{ total }}</h2>
       </div>
+    </div>
+    <div class="total_amount">
+      <h2>Total</h2>
+      <h2>{{ total }}</h2>
     </div>
     <div v-if="route.name !== 'finish'" class="btn">
       <Button @onClick="handleNextPage">Pay With e-wallet</Button>
@@ -149,9 +142,12 @@ const total = computed(() => {
       text-align: right
       font-weight: bold
 .total_amount
+  width: 100%
   color: #FF8A00
   font-weight: bold
   margin-top: 1rem
+  display: flex
+  justify-content: space-between
 .separator
   width: 30%
   border: 1px solid
@@ -160,4 +156,21 @@ const total = computed(() => {
 .btn
   text-align: center
   margin-top: 1rem
+
+@media screen and (min-width: 480px)
+  .summary
+    margin-top: unset
+    width: fit-content
+    display: flex
+    padding-left: 1.5rem
+    flex-direction: column
+    border-left: 1px solid #ccc
+    p
+      font-size: 0.7rem
+    h4
+      font-size: 0.8rem
+    h2
+      font-size: 0.9rem
+  .header
+    margin-top: unset
 </style>

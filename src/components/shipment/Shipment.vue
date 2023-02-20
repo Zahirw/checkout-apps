@@ -77,39 +77,29 @@ const handlePayment = (param) => {
 
 <template>
   <div class="content">
-    <div>
-      <h1 class="title">Shipment</h1>
-      <div class="group_btn">
-        <ButtonRadio
-          v-for="item in shipment"
-          :key="item.id"
-          :class="item.value && 'active'"
-          :onClick="() => handleShipment(item.id)"
-        >
-          <p>{{ item.name }}</p>
-          <p>{{ item.price }}</p>
-        </ButtonRadio>
-      </div>
-      <div>
-        <h1 class="title">Payment</h1>
-        <div class="group_btn">
-          <ButtonRadio
-            v-for="item in payment"
-            :key="item.id"
-            :class="item.value && 'active'"
-            :onClick="() => handlePayment(item.id)"
-          >
-            <p>{{ item.name }}</p>
-          </ButtonRadio>
-        </div>
-      </div>
+    <h1 class="title">Shipment</h1>
+    <div class="group_btn">
+      <ButtonRadio
+        v-for="item in shipment"
+        :key="item.id"
+        :class="item.value && 'active'"
+        :onClick="() => handleShipment(item.id)"
+      >
+        <p>{{ item.name }}</p>
+        <p>{{ item.price }}</p>
+      </ButtonRadio>
     </div>
-    <!-- <div class="dropshipper">
-      <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-      <label class="label" for="vehicle1">Send as dropshipper</label><br />
-      <Input type="text" placeholder="Dropshipper Name" />
-      <Input type="text" placeholder="Dropshipper Phone Number" />
-    </div> -->
+    <h1 class="title">Payment</h1>
+    <div class="group_btn">
+      <ButtonRadio
+        v-for="item in payment"
+        :key="item.id"
+        :class="item.value && 'active'"
+        :onClick="() => handlePayment(item.id)"
+      >
+        <p>{{ item.name }}</p>
+      </ButtonRadio>
+    </div>
   </div>
 </template>
 
@@ -131,4 +121,12 @@ const handlePayment = (param) => {
     width: 100%
     height: 100%
     display: flex
+    flex-direction: column
+    align-items: flex-start
+  .group_btn
+    width: 100%
+    display: flex
+    justify-content: flex-start
+  .btn
+    margin-right: 1rem
 </style>

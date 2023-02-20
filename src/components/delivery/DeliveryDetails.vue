@@ -85,7 +85,7 @@ const handleDropship = (e) => {
 
 <template>
   <div class="content">
-    <div>
+    <div class="delivery">
       <h1 class="title">Delivery Details</h1>
       <Input
         type="email"
@@ -180,4 +180,8 @@ const handleDropship = (e) => {
     width: 100%
     height: 100%
     display: flex
+  .delivery
+    margin: 0 1rem
+  .dropshipper
+    margin: 1.5rem 1rem
 </style>

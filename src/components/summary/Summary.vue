@@ -115,7 +115,7 @@ const total = computed(() => {
         <h2 class="total_amount">{{ total }}</h2>
       </div>
     </div>
-    <div class="btn">
+    <div v-if="route.name !== 'finish'" class="btn">
       <Button @onClick="handleNextPage">Pay With e-wallet</Button>
     </div>
   </div>

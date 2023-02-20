@@ -1,19 +1,23 @@
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+</script>
 <template>
   <div class="layout">
     <div class="stepper">
       <div class="stepper_el">
-        <div class="icon_el active">1</div>
+        <div :class="`icon_el ${route.name == 'home' && 'active'}`">1</div>
         <p>Delivery</p>
       </div>
       <p>></p>
       <div class="stepper_el">
-        <div class="icon_el">2</div>
+        <div :class="`icon_el ${route.name == 'shipment' && 'active'}`">2</div>
         <p>Payment</p>
       </div>
       <p>></p>
       <div class="stepper_el">
-        <div class="icon_el">3</div>
+        <div :class="`icon_el ${route.name == 'finish' && 'active'}`">3</div>
         <p>Finish</p>
       </div>
     </div>
